@@ -96,6 +96,7 @@ ul.nav li a:hover {
     height: 200px;
     margin: 0 auto;
     overflow: hidden;
+    position: relative;
 }
 
 .io-preview-wrapper .io-preview-content {
@@ -107,10 +108,75 @@ ul.nav li a:hover {
 }
 
 .io-preview-link-launcher {
+    right: 18%;
+    top: 8%;
     display: block;
     position: absolute;
-    right: 0;
-    top: 0;
+    width: 24px;
+    height: 24px;
+    background: url(../img/window-maximize.svg) no-repeat;
+    background-size: 100% 100%;
+    font-size: 0px;
+}
+
+/* loader animation */
+
+@keyframes spin {
+    from {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    to {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+
+.io-loader {
+    position: relative;
+    margin: 10px auto;
+    width: 100px;
+    height: 100px;
+}
+
+.io-loader .io-spinner{
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2.5s infinite linear;
+    animation: spin 2.5s infinite linear;
+    border: 3px solid transparent;
+    border-top-color: #28b197;
+    border-radius: 50% !important;
+}
+  
+.io-loader .io-spinner:before,
+.io-loader .io-spinner:after {
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+}
+
+.io-loader .io-spinner:before {
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+  border: 3px solid transparent;
+  border-top-color: #32524c;
+}
+
+.io-loader .io-spinner:after {
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+  border: 3px solid transparent;
+  border-top-color: #203331;
 }
 
 /* Footer styles */

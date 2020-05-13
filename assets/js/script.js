@@ -2,7 +2,9 @@
 
 jQuery.fn.ioPlace = function( url, w = 300, h = 200 ) {
     //var frame = '<iframe src="'+url+'" height="'+h+'" width="'+w+'"></iframe>';
-    var slot = $(this);
+    var slot = this;
+    var spinner = $('<div class="io-loader"><div class="io-spinner"></div></div>');
+    slot.html(spinner);
 
     $.ajax({
         url: url,
@@ -27,6 +29,8 @@ jQuery.fn.ioPlace = function( url, w = 300, h = 200 ) {
             {
                 alert("Please allow popups for this website");
             }
+            
+            spinner.remove();
         }
     });
 }
@@ -38,7 +42,9 @@ jQuery.githubUser = function(username, callback) {
 }
 
 jQuery.fn.loadRepositories = function(username) {
-    this.html("<span>Querying GitHub for " + username + "'s repositories...</span>");
+    var spinner = $('<div class="io-loader"><div class="io-spinner"></div></div>');
+    this.html(spinner);
+    $(spinner, this).after("<span>Querying GitHub for " + username + "'s repositories...</span>");
 
     var target = this;
     $.githubUser(username, function(response) {
