@@ -44,9 +44,18 @@
     <script type='text/javascript' src="assets/js/jquery-3.5.0.min.js"></script>
     <script type='text/javascript' src="assets/js/script.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $(".project-list").loadRepositories("eobasi");
-        });
+        (function( $ ) {
+            var projectList = $(".project-list");
+            projectList.loadRepositories("eobasi");
+        
+            $(projectList).on('click', '.post h2 a', function(e) {
+                e.preventDefault();
+                $('.io-link-preview').hide();
+                var preview = $(this).closest('.post').find('.io-link-preview');
+                $(preview).ioPlace($(this).attr('href'), '90%', 400);
+                preview.fadeIn('slow');
+            });
+        })(jQuery);
     </script>
 </body>
 

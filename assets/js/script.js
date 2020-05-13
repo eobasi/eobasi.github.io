@@ -1,3 +1,36 @@
+"use strict";
+
+jQuery.fn.ioPlace = function( url, w = 300, h = 200 ) {
+    //var frame = '<iframe src="'+url+'" height="'+h+'" width="'+w+'"></iframe>';
+    var slot = $(this);
+
+    $.ajax({
+        url: url,
+        success: function( data ) {
+            slot.addClass('io-preview-wrapper').css('width', w).css('height', h);
+
+            var content = $("<div class='io-preview-content'></div>")
+
+            slot.empty().html(content);
+            $(content, slot).html(data);
+
+            slot.append("<a href='"+url+"' class='io-preview-link-launcher' target='_blank'>Open in new tab</a>");
+        },
+        error: function( ) {
+            var tab = window.open(url, '_blank');
+
+            if( tab )
+            {
+                tab.focus();
+            }
+            else
+            {
+                alert("Please allow popups for this website");
+            }
+        }
+    });
+}
+
 // http://aboutcode.net/2010/11/11/list-github-projects-using-javascript.html
 
 jQuery.githubUser = function(username, callback) {
@@ -24,7 +57,7 @@ jQuery.fn.loadRepositories = function(username) {
                 var description = this.description == null ? '' : this.description;
                 var name = this.name == null ? '' : this.name;
 
-                var project = $('<article class="post" id="project-' + this.id + '" style="display:none;"></article>')
+                var project = $('<article class="post" id="project-' + this.id + '" style="display:none;"><div class="io-link-preview"></div></article>')
                 list.append(project);
 
 
