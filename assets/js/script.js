@@ -53,7 +53,7 @@ jQuery.fn.loadRepositories = function(username) {
         $(repos).each(function() {
             if (this.name != username + '.github.io') {
                 var parts = this.full_name.split('/');
-                var url = this.has_pages ? 'http://io.eobasi.com/' + parts[1] : this.html_url;
+                var url = this.has_pages ? 'https://io.eobasi.com/' + parts[1] : this.html_url;
                 var description = this.description == null ? '' : this.description;
                 var name = this.name == null ? '' : this.name;
 
